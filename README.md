@@ -26,18 +26,19 @@ Node.js must be present on the system. The script has been tested with version 1
 node index.js \
   --source ~/Downloads/buttercup.bcup \
   --password my-secret \
-  --target ~/Downloads/buttercup.csv \
-  --info
+  --target ~/Downloads/buttercup.csv
 ```
 
 ## Options
 
-- `-i` `--columns`  
+- `-c` `--columns`  
   Print column names in the first line.
 - `-h` `--help`  
   Display help information
 - `-i` `--info`  
   Print the vault structure to stdout.
+- `-o` `--otp`  
+  List of attributes interpreted as OTP code.
 - `-p` `--password`  
   Buttercup vault password Required.
 - `-s` `--source`  

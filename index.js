@@ -20,13 +20,19 @@ const parse_arguments = () => {
     options: {
       columns: {
         description: "Print column names in the first line.",
-        shortcut: "i",
+        shortcut: "c",
         type: "boolean",
       },
       info: {
         description: "Print the vault structure to stdout.",
         shortcut: "i",
         type: "boolean",
+      },
+      otp: {
+        description: "List of attributes interpreted as OTP code.",
+        default: ["otp"],
+        shortcut: "o",
+        type: "array",
       },
       password: {
         description: "Buttercup vault password",
@@ -78,6 +84,7 @@ const open_vault = async (args) => {
 
 const concert_to_records = (args, vault) => {
   const records = [];
+  console.log("args.otp", args.otp);
   const walk = ({ group, depth = 0, parents = [] }) => {
     if (depth === 0) {
       if (args.info) process.stdout.write("vault\n");
@@ -92,6 +99,7 @@ const concert_to_records = (args, vault) => {
             " ".repeat(depth * 2) + "  " + entry._source.p.title.value + "\n",
           );
         // https://keepass.info/help/kb/imp_csv.html
+        const otp = args.otp.find((otp) => entry._source.p[otp]);
         const record = {
           Group: [...parents, group.getTitle()].join("/"),
           Title: entry._source.p.title.value,
@@ -99,13 +107,18 @@ const concert_to_records = (args, vault) => {
           Password: entry._source.p.password?.value,
           URL: entry._source.p.url?.value,
           Notes: entry._source.p.notes?.value,
-          TOTP: entry._source.p.otp?.value,
+          TOTP: entry._source.p[otp]?.value,
         };
         for (const attribute in entry._source.p) {
           if (
-            ["title", "username", "password", "url", "notes", "otp"].includes(
-              attribute,
-            )
+            [
+              "title",
+              "username",
+              "password",
+              "url",
+              "notes",
+              ...args.otp,
+            ].includes(attribute)
           )
             continue;
           if (entry._source.p[attribute].value) {
