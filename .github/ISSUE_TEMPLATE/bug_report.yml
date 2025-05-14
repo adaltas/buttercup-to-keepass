@@ -1,0 +1,46 @@
+name: Bug Report
+description: Report a probleme or an unexpected behavior using the library.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A **clear and concise** description of what the bug is.
+      placeholder: "Describe the problem"
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: The affected version or the range of versions you are using.
+    validations:
+      required: false
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      description: The environment executing the library.
+      options:
+        - All
+        - Node.js
+        - Browser
+      default: 0
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: To Reproduce
+      description: Please provide us with a unit test, an example code or even pseudo-code. Limit the data to the minimum and strip down the number of options to the relevant ones with an impact. Do not reference an external file unless required.
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add complementary context information about the problem here.
