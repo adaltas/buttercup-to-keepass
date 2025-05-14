@@ -1,5 +1,5 @@
 {
-  "name": "buttercup-export",
+  "name": "buttercup-to-keepass",
   "version": "0.0.0",
   "description": "Reads a KeePass vault and export its entries as CSV in a KeePass format.",
   "license": "MIT",
