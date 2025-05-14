@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/adaltas/buttercup-to-keepass/compare/v0.1.0...v0.2.0) (2025-05-14)
+
+
+### Features
+
+* otp option ([c5a4549](https://github.com/adaltas/buttercup-to-keepass/commit/c5a4549a9985797b5378ac5944a415df38b7d766))
+
 ## 0.1.0 (2025-05-14)
 
 
