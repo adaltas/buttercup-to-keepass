@@ -84,7 +84,6 @@ const open_vault = async (args) => {
 
 const concert_to_records = (args, vault) => {
   const records = [];
-  console.log("args.otp", args.otp);
   const walk = ({ group, depth = 0, parents = [] }) => {
     if (depth === 0) {
       if (args.info) process.stdout.write("vault\n");
