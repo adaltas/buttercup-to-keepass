@@ -29,7 +29,7 @@ const parse_arguments = () => {
         type: "boolean",
       },
       otp: {
-        description: "List of attributes interpreted as OTP code.",
+        description: "List of properties interpreted as OTP code.",
         default: ["otp"],
         shortcut: "o",
         type: "array",
@@ -93,22 +93,23 @@ const concert_to_records = (args, vault) => {
           " ".repeat(depth * 2) + "- " + group.getTitle() + "\n",
         );
       for (const entry of group.getEntries()) {
+        const properties = entry._source.p || entry._source.properties;
         if (args.info)
           process.stdout.write(
-            " ".repeat(depth * 2) + "  " + entry._source.p.title.value + "\n",
+            " ".repeat(depth * 2) + "  " + properties.title.value + "\n",
           );
         // https://keepass.info/help/kb/imp_csv.html
-        const otp = args.otp.find((otp) => entry._source.p[otp]);
+        const otp = args.otp.find((otp) => properties[otp]);
         const record = {
           Group: [...parents, group.getTitle()].join("/"),
-          Title: entry._source.p.title.value,
-          Username: entry._source.p.username?.value,
-          Password: entry._source.p.password?.value,
-          URL: entry._source.p.url?.value,
-          Notes: entry._source.p.notes?.value,
-          TOTP: entry._source.p[otp]?.value,
+          Title: properties.title.value,
+          Username: properties.username?.value,
+          Password: properties.password?.value,
+          URL: properties.url?.value,
+          Notes: properties.notes?.value,
+          TOTP: properties[otp]?.value,
         };
-        for (const attribute in entry._source.p) {
+        for (const property in properties) {
           if (
             [
               "title",
@@ -117,17 +118,17 @@ const concert_to_records = (args, vault) => {
               "url",
               "notes",
               ...args.otp,
-            ].includes(attribute)
+            ].includes(property)
           )
             continue;
-          if (entry._source.p[attribute].value) {
+          if (properties[property].value) {
             if (!record.Notes) {
               record.Notes = "";
             } else {
               record.Notes += "\n\n";
             }
             record.Notes +=
-              `# ${attribute}` + "\n\n" + entry._source.p[attribute].value;
+              `# ${property}` + "\n\n" + properties[property].value;
           }
         }
         records.push(record);
