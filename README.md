@@ -1,8 +1,8 @@
 # Buttercup to KeePass exporter
 
-The script reads a KeePass vault and export its entries as CSV in a KeePass format.
+The script reads a KeePass vault and export its entries as CSV in a KeePass format. Learn more by reading the presentation [blog post](https://www.adaltas.com/en/2025/05/14/buttercup-keepass-migration/).
 
-The export CSV structure is:
+The exported CSV structure is:
 
 - `Group`
 - `Title`
