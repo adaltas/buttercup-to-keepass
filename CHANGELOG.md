@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0](https://github.com/adaltas/buttercup-to-keepass/compare/v0.2.0...v0.3.0) (2025-05-19)
+
+
+### Features
+
+* support for entries.properties ([0c3186c](https://github.com/adaltas/buttercup-to-keepass/commit/0c3186c1d1bd3d48e78d6de67f823cd0ee2f7eaa))
+
+
+### Bug Fixes
+
+* remove debugging output ([d14bd49](https://github.com/adaltas/buttercup-to-keepass/commit/d14bd49e59668fb8a5b809b324ec84d1aaa355fd))
+
 ## [0.2.0](https://github.com/adaltas/buttercup-to-keepass/compare/v0.1.0...v0.2.0) (2025-05-14)
 
 
