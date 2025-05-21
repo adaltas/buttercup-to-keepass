@@ -93,21 +93,29 @@ const concert_to_records = (args, vault) => {
           " ".repeat(depth * 2) + "- " + group.getTitle() + "\n",
         );
       for (const entry of group.getEntries()) {
+        // See https://github.com/adaltas/buttercup-to-keepass/issues/8
+        // Two format are encountered to store properties values:
+        // - `entry._source.p[property].value`
+        // - `entry._source.properties[propery]`
         const properties = entry._source.p || entry._source.properties;
+        for (const k in properties) {
+          if (!properties[k].value === undefined) continue;
+          properties[k] = properties[k].value;
+        }
         if (args.info)
           process.stdout.write(
-            " ".repeat(depth * 2) + "  " + properties.title.value + "\n",
+            " ".repeat(depth * 2) + "  " + properties.title + "\n",
           );
         // https://keepass.info/help/kb/imp_csv.html
         const otp = args.otp.find((otp) => properties[otp]);
         const record = {
           Group: [...parents, group.getTitle()].join("/"),
-          Title: properties.title.value,
-          Username: properties.username?.value,
-          Password: properties.password?.value,
-          URL: properties.url?.value,
-          Notes: properties.notes?.value,
-          TOTP: properties[otp]?.value,
+          Title: properties.title,
+          Username: properties.username,
+          Password: properties.password,
+          URL: properties.url,
+          Notes: properties.notes,
+          TOTP: properties[otp],
         };
         for (const property in properties) {
           if (
@@ -121,14 +129,13 @@ const concert_to_records = (args, vault) => {
             ].includes(property)
           )
             continue;
-          if (properties[property].value) {
+          if (properties[property]) {
             if (!record.Notes) {
               record.Notes = "";
             } else {
               record.Notes += "\n\n";
             }
-            record.Notes +=
-              `# ${property}` + "\n\n" + properties[property].value;
+            record.Notes += `# ${property}` + "\n\n" + properties[property];
           }
         }
         records.push(record);
