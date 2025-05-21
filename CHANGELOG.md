@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/adaltas/buttercup-to-keepass/compare/v0.3.0...v0.3.1) (2025-05-21)
+
+
+### Bug Fixes
+
+* empty properties when value not present ([8441d28](https://github.com/adaltas/buttercup-to-keepass/commit/8441d28f3a58c8cd2614f6f2a83f0f290072cfb8))
+
 ## [0.3.0](https://github.com/adaltas/buttercup-to-keepass/compare/v0.2.0...v0.3.0) (2025-05-19)
 
 
