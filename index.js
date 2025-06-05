@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-
-import fs from "fs/promises";
+import { pathToFileURL } from "node:url";
+import fs from "node:fs/promises";
 import {
   Credentials,
   FileDatasource,
@@ -52,7 +52,7 @@ const parse_arguments = () => {
     },
   });
   try {
-    const args = app.parse();
+    const args = app.parse(process.argv.slice(2));
     if (app.helping(args)) {
       process.stdout.write(app.help());
       process.exit();
@@ -161,7 +161,16 @@ const write_csv = async (args, records) => {
   await fs.writeFile(args.target, data);
 };
 
-const args = parse_arguments();
-const vault = await open_vault(args);
-const records = concert_to_records(args, vault);
-write_csv(args, records);
+export default {
+  parse_arguments,
+  open_vault,
+  concert_to_records,
+  write_csv,
+};
+
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const args = parse_arguments();
+  const vault = await open_vault(args);
+  const records = concert_to_records(args, vault);
+  write_csv(args, records);
+}
