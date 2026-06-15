@@ -24,6 +24,8 @@ jobs:
       - run: npm ci
         if: ${{ steps.release.outputs.release_created }}
       - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        # 260615: commented, now using npm trust with github
+        # see https://www.npmjs.com/package/buttercup-to-keepass/access
+        # env:
+        #   NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         if: ${{ steps.release.outputs.release_created }}
