@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.1.0](https://github.com/adaltas/buttercup-to-keepass/compare/v0.3.2...v0.1.0) (2026-06-15)
+
+
+### Features
+
+* export script as bin ([611bf86](https://github.com/adaltas/buttercup-to-keepass/commit/611bf8636ddd51c07567525bf5a022759999d0f4))
+* initial commit ([9457112](https://github.com/adaltas/buttercup-to-keepass/commit/94571127dcd0a033ead2d790258e5c567601c8a7))
+* otp option ([c5a4549](https://github.com/adaltas/buttercup-to-keepass/commit/c5a4549a9985797b5378ac5944a415df38b7d766))
+* support for entries.properties ([0c3186c](https://github.com/adaltas/buttercup-to-keepass/commit/0c3186c1d1bd3d48e78d6de67f823cd0ee2f7eaa))
+
+
+### Bug Fixes
+
+* empty properties when value not present ([8441d28](https://github.com/adaltas/buttercup-to-keepass/commit/8441d28f3a58c8cd2614f6f2a83f0f290072cfb8))
+* property value normalization ([#12](https://github.com/adaltas/buttercup-to-keepass/issues/12)) ([552af64](https://github.com/adaltas/buttercup-to-keepass/commit/552af6422cadb7a5b045dad845e94e1ad850c16d))
+* remove debugging output ([d14bd49](https://github.com/adaltas/buttercup-to-keepass/commit/d14bd49e59668fb8a5b809b324ec84d1aaa355fd))
+
 ## [0.3.2](https://github.com/adaltas/buttercup-to-keepass/compare/v0.3.1...v0.3.2) (2026-06-15)
 
 
