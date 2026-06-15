@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.2](https://github.com/adaltas/buttercup-to-keepass/compare/v0.3.1...v0.3.2) (2026-06-15)
+
+
+### Bug Fixes
+
+* property value normalization ([#12](https://github.com/adaltas/buttercup-to-keepass/issues/12)) ([552af64](https://github.com/adaltas/buttercup-to-keepass/commit/552af6422cadb7a5b045dad845e94e1ad850c16d))
+
 ## [0.3.1](https://github.com/adaltas/buttercup-to-keepass/compare/v0.3.0...v0.3.1) (2025-05-21)
 
 
