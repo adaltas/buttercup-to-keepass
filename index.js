@@ -99,8 +99,13 @@ const concert_to_records = (args, vault) => {
         // - `entry._source.properties[propery]`
         const properties = entry._source.p || entry._source.properties;
         for (const k in properties) {
-          if (!properties[k].value === undefined) continue;
-          properties[k] = properties[k].value;
+          if (
+            properties[k] &&
+            typeof properties[k] === "object" &&
+            Object.prototype.hasOwnProperty.call(properties[k], "value")
+          ) {
+            properties[k] = properties[k].value;
+          }
         }
         if (args.info)
           process.stdout.write(
